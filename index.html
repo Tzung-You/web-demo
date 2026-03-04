@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太極拳丹道武術教學 - 傳承古法內功，開發勁氣能量</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-gold: #ffcc5d;
+            --deep-red: #8b0000;
+            --deep-blue: #1a237e;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 50%, #ff9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 204, 93, 0.05) 100%);
+        }
+
+        .energy-glow {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 0 60px rgba(255, 204, 93, 0.2);
+        }
+
+        .card-glow {
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3), 0 0 60px rgba(255, 204, 93, 0.2);
+        }
+
+        .taiji-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 204, 93, 0.03) 0%, transparent 50%);
+        }
+
+        .nav-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 100%);
+            color: #0a0a0a;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #d4af37;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-bg {
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%),
+                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .taiji-symbol {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #d4af37 50%, #1a1a1a 50%);
+            position: relative;
+            animation: rotate 8s linear infinite;
+        }
+
+        .taiji-symbol::before,
+        .taiji-symbol::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .taiji-symbol::before {
+            top: 0;
+            left: 15px;
+            background: #d4af37;
+        }
+
+        .taiji-symbol::after {
+            bottom: 0;
+            left: 15px;
+            background: #1a1a1a;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .energy-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%);
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.75rem !important;
+            }
+            .section-title {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .kuse-branding {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.875rem;
+            color: #888;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .kuse-branding:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+        }
+
+        .kuse-branding svg {
+            height: 1em;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="taiji-symbol" style="width: 40px; height: 40px;"></div>
+                    <span class="text-xl font-bold gradient-text serif">太極拳丹道武術</span>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">首頁</a>
+                    <a href="#about" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">關於我們</a>
+                    <a href="#courses" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">課程系統</a>
+                    <a href="#videos" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">教學影片</a>
+                    <a href="#testimonials" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">學員心得</a>
+                    <a href="#contact" class="nav-link text-[#e0e0e0] hover:text-[#d4af37] transition-colors">聯絡報名</a>
+                    <a href="tel:0918148814" class="text-[#d4af37] font-semibold hover:text-[#ffcc5d] transition-colors">
+                        📞 0918-14-88-14
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-[#d4af37] text-2xl">
+                    ☰
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-[#1a1a1a] rounded-lg mt-2">
+                <div class="flex flex-col gap-4 p-6">
+                    <a href="#home" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">首頁</a>
+                    <a href="#about" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">關於我們</a>
+                    <a href="#courses" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">課程系統</a>
+                    <a href="#videos" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">教學影片</a>
+                    <a href="#testimonials" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">學員心得</a>
+                    <a href="#contact" class="text-[#e0e0e0] hover:text-[#d4af37] transition-colors">聯絡報名</a>
+                    <a href="tel:0918148814" class="text-[#d4af37] font-semibold">📞 0918-14-88-14</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-in">
+                <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold mb-6 serif leading-tight">
+                    太極，是內在能量的修煉<br>
+                    <span class="gradient-text">而不僅僅是外在招式的演練</span>
+                </h1>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 0.2s;">
+                <p class="text-2xl md:text-3xl text-[#d4af37] mb-8 serif font-semibold">
+                    「太極的靈魂不在套路，而在於體內的勁氣能量。」
+                </p>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 0.4s;">
+                <p class="text-xl md:text-2xl mb-6 text-[#b0b0b0] max-w-4xl mx-auto leading-relaxed">
+                    找回身體失落的「勁氣能量」，透過丹道太極，從內而外調理機能，重塑您的健康與生命力
+                </p>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 0.6s;">
+                <p class="text-lg md:text-xl mb-12 text-[#909090] max-w-3xl mx-auto leading-relaxed">
+                    太極拳不再只是緩慢的體操，而是由內而外的生命修煉。透過丹道太極，開發身體內在能量，找回最純粹的健康。
+                </p>
+            </div>
+
+            <div class="fade-in flex flex-col sm:flex-row gap-6 justify-center items-center" style="transition-delay: 0.8s;">
+                <button onclick="window.location.href='#contact'" class="btn-primary">立即諮詢報名</button>
+                <button onclick="window.location.href='#videos'" class="btn-secondary">觀看教學影片</button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="text-[#d4af37] text-3xl">↓</div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="problem" class="py-20 taiji-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    為什麼很多人練了很久太極，卻感覺不到效果？
+                </h2>
+                <p class="text-lg md:text-xl text-[#b0b0b0] max-w-4xl mx-auto leading-relaxed">
+                    傳統太極拳常被誤以為是「慢動作體操」或「記套路」。但若缺乏「內在勁氣」，招式只是空殼。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#d4af37] serif">重點不在學套路</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed text-lg">
+                        盲目記憶千變萬化的招式，不如練出一股真實流動的內氣。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20" style="transition-delay: 0.2s;">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#d4af37] serif">內功才是核心</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed text-lg">
+                        唯有練出內在勁氣，才能真正累積內功，達到深層的身體修復。
+                    </p>
+                </div>
+            </div>
+
+            <div class="fade-in text-center mb-12" style="transition-delay: 0.4s;">
+                <div class="inline-block bg-gradient-to-r from-[#d4af37]/20 to-[#ffcc5d]/20 px-8 py-6 rounded-2xl border-2 border-[#d4af37]">
+                    <p class="text-xl md:text-2xl font-bold gradient-text serif">
+                        這也正是為什麼我們不只教套路，而是更著重傳統古法勁氣內功的原因！
+                    </p>
+                </div>
+            </div>
+
+            <div class="fade-in bg-[#1a1a1a] p-8 md:p-12 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.6s;">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center gradient-text serif">
+                    勁氣能量開發三大要點
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">🔥</div>
+                        <h4 class="text-xl font-bold mb-3 text-[#d4af37]">內功累積</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            招式只是載體，透過勁氣能量與心法的引導，讓內在勁氣在經絡中流動，才是內功的真正累積。
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">💫</div>
+                        <h4 class="text-xl font-bold mb-3 text-[#d4af37]">能量調理</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            練出勁氣後，身體會自動進行深層按摩，修復受損的組織。
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">⚡</div>
+                        <h4 class="text-xl font-bold mb-3 text-[#d4af37]">事半功倍</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            掌握了勁氣，即便只是簡單的伸展，其運動效率也遠高於盲目地練習百遍套路。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="courses" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    三大核心修煉重點——專業簡單化
+                </h2>
+                <p class="text-lg md:text-xl text-[#b0b0b0] max-w-4xl mx-auto leading-relaxed">
+                    我們的太極拳、站樁內功、氣功、形意拳、八極拳、八卦掌的教學課程，是能伴隨一生的「能量開發」
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in card-glow bg-gradient-to-br from-[#1a1a1a] to-[#2a1a1a] p-8 rounded-2xl border border-[#d4af37]/30">
+                    <div class="text-6xl mb-6 text-center">🌬️</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#d4af37] text-center serif">練氣：開發能量</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed text-center">
+                        透過正確的呼吸與引導，感受體內「氣」的流動，喚醒沉睡的身體機能。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-gradient-to-br from-[#1a1a1a] to-[#2a1a1a] p-8 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.2s;">
+                    <div class="text-6xl mb-6 text-center">🔆</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#d4af37] text-center serif">積功：調理臟腑</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed text-center">
+                        利用勁氣產生的微內震動，按摩平日運動不到的內臟，從根本改善體質。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-gradient-to-br from-[#1a1a1a] to-[#2a1a1a] p-8 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.4s;">
+                    <div class="text-6xl mb-6 text-center">⚡</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#d4af37] text-center serif">運勁：身心合一</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed text-center">
+                        將內氣轉化為綿延不斷的勁力，不僅讓身體靈活有力，更能達到延年益壽、壓力釋放的功效。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="benefits" class="py-20 taiji-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    四大核心功效
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20 text-center">
+                    <div class="text-5xl mb-4">💪</div>
+                    <h3 class="text-xl font-bold mb-3 text-[#d4af37] serif">運動健身</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        開發核心肌群，強化骨骼密度，提升身體協調性。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20 text-center" style="transition-delay: 0.1s;">
+                    <div class="text-5xl mb-4">🌿</div>
+                    <h3 class="text-xl font-bold mb-3 text-[#d4af37] serif">調理機能</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        透過氣血運行的調整，改善消化、睡眠與代謝系統。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20 text-center" style="transition-delay: 0.2s;">
+                    <div class="text-5xl mb-4">🧘</div>
+                    <h3 class="text-xl font-bold mb-3 text-[#d4af37] serif">養生抗壓</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        靜心導引，舒緩現代生活帶來的精神壓力與自律神經失調。
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/20 text-center" style="transition-delay: 0.3s;">
+                    <div class="text-5xl mb-4">🌟</div>
+                    <h3 class="text-xl font-bold mb-3 text-[#d4af37] serif">延年益壽</h3>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        活化細胞，增強免疫力，讓身體維持在最佳的年輕狀態。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="about" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4 gradient-text serif">
+                    師資介紹：傳統古法太極的守護者
+                </h2>
+                <p class="text-xl md:text-2xl text-[#d4af37] mb-8 serif">
+                    四十載精研，傳承大陸民國時期傳統武學
+                </p>
+            </div>
+
+            <div class="fade-in bg-gradient-to-br from-[#1a1a1a] to-[#2a1a1a] p-8 md:p-12 rounded-2xl border-2 border-[#d4af37]/30 mb-12" style="transition-delay: 0.2s;">
+                <div class="text-center mb-8">
+                    <p class="text-2xl md:text-3xl text-[#d4af37] italic serif leading-relaxed">
+                        「練拳四十載，教拳二十秋。<br>將所學化繁鎖為精準，傳承太極的真實勁氣能量。」
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#d4af37] serif">師承背景</h3>
+                        <ul class="space-y-3 text-[#b0b0b0]">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span>自12歲起投身武學與丹道修煉，至今已逾40餘年</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span>超過20年的教學經驗</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span>傳承體系直接承襲自大陸民國時期的傳統古法</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span>授業恩師李長先生曾分別追隨兩大傳奇宗師：楊式太極拳大師楊澄甫、陳式太極拳大師陳發科</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#d4af37] serif">教學理念</h3>
+                        <ul class="space-y-3 text-[#b0b0b0]">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span><strong class="text-[#d4af37]">重視基礎內功與結構</strong> - 身體結構的精準校正，讓身體先成為一個能儲存能量的容器</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span><strong class="text-[#d4af37]">教學風格穩定且透明</strong> - 將艱深的理論轉化為簡單易懂的「分階練習」</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#d4af37] mt-1">✦</span>
+                                <span><strong class="text-[#d4af37]">累積內在力量，調理體質</strong> - 感受勁氣流動、調理身體機能、達到養生長壽</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-[#0a0a0a]/50 p-6 rounded-xl border border-[#d4af37]/20">
+                    <p class="text-lg text-[#b0b0b0] leading-relaxed italic">
+                        「學習太極，不分年齡與基礎。只要你願意靜下心來，感受呼吸與體內細微的勁氣流動，你就能親自體會到這門古老武學對生命帶來的驚人蛻變，一步步找回身體的內在能量。」
+                    </p>
+                    <p class="text-right text-[#d4af37] mt-4 font-semibold">— 吳老師</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="stages" class="py-20 taiji-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    循序漸進的修煉階段
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/30">
+                    <div class="text-center mb-6">
+                        <div class="inline-block bg-[#d4af37] text-[#0a0a0a] px-6 py-2 rounded-full font-bold text-lg mb-4">
+                            基礎
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#d4af37] serif">內功建立</h3>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">教學重點</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            身體結構對準、放鬆心法、基礎呼吸吐納
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">預期成效</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            改善腰痠背痛、提升睡眠品質、感受到初步氣感
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.2s;">
+                    <div class="text-center mb-6">
+                        <div class="inline-block bg-[#d4af37] text-[#0a0a0a] px-6 py-2 rounded-full font-bold text-lg mb-4">
+                            中階
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#d4af37] serif">勁氣引導</h3>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">教學重點</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            以心行氣、以氣領勁，將能量融入動作中
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">預期成效</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            調理臟腑機能、增強免疫力、累積體內內功
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.4s;">
+                    <div class="text-center mb-6">
+                        <div class="inline-block bg-[#d4af37] text-[#0a0a0a] px-6 py-2 rounded-full font-bold text-lg mb-4">
+                            進階
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#d4af37] serif">古法應用</h3>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">教學重點</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            纏絲勁、化勁與發勁應用，體現古法太極精髓
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-[#ffcc5d] mb-3">預期成效</h4>
+                        <p class="text-[#b0b0b0] leading-relaxed">
+                            達到身心合一、能量收放自如、延年益壽
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="videos" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    教學影片
+                </h2>
+                <p class="text-xl text-[#d4af37] serif">
+                    《太極拳練氣內功三大層次》
+                </p>
+            </div>
+
+            <div class="fade-in max-w-4xl mx-auto bg-[#1a1a1a] p-8 rounded-2xl border border-[#d4af37]/30" style="transition-delay: 0.2s;">
+                <div class="aspect-video bg-[#0a0a0a] rounded-xl flex items-center justify-center border border-[#d4af37]/20">
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">▶️</div>
+                        <p class="text-[#d4af37] text-xl">教學影片即將上線</p>
+                        <p class="text-[#b0b0b0] mt-2">敬請期待</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="locations" class="py-20 taiji-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    全台教學據點與課表
+                </h2>
+            </div>
+
+            <div class="fade-in bg-[#1a1a1a] rounded-2xl border border-[#d4af37]/30 overflow-hidden" style="transition-delay: 0.2s;">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-[#d4af37] text-[#0a0a0a]">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-bold">地區</th>
+                                <th class="px-6 py-4 text-left font-bold">上課時間</th>
+                                <th class="px-6 py-4 text-left font-bold">上課地點</th>
+                                <th class="px-6 py-4 text-left font-bold">費用</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-[#b0b0b0]">
+                            <tr class="border-b border-[#d4af37]/20">
+                                <td class="px-6 py-4 font-semibold text-[#d4af37]">台北班</td>
+                                <td class="px-6 py-4">週六 09:00-11:30</td>
+                                <td class="px-6 py-4">復盛區民活動中心</td>
+                                <td class="px-6 py-4 font-semibold text-[#ffcc5d]">6,000元/9堂</td>
+                            </tr>
+                            <tr class="border-b border-[#d4af37]/20">
+                                <td class="px-6 py-4 font-semibold text-[#d4af37]">新竹班</td>
+                                <td class="px-6 py-4">週五 19:00-20:30</td>
+                                <td class="px-6 py-4">清華大學南大分校</td>
+                                <td class="px-6 py-4 font-semibold text-[#ffcc5d]">5,000元/9堂</td>
+                            </tr>
+                            <tr class="border-b border-[#d4af37]/20">
+                                <td class="px-6 py-4 font-semibold text-[#d4af37]">台中班</td>
+                                <td class="px-6 py-4">週四 18:30-20:30</td>
+                                <td class="px-6 py-4">科博館前門太空劇場迴廊</td>
+                                <td class="px-6 py-4 font-semibold text-[#ffcc5d]">6,000元/10堂</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-semibold text-[#d4af37]">台南班</td>
+                                <td class="px-6 py-4">週六 17:00-19:30</td>
+                                <td class="px-6 py-4">成功大學光復校區雲平大樓迴廊</td>
+                                <td class="px-6 py-4 font-semibold text-[#ffcc5d]">4,000元/9堂</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="testimonials" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4 gradient-text serif">
+                    蛻變與重生：學員修煉心得
+                </h2>
+                <p class="text-xl text-[#b0b0b0]">
+                    聽聽他們在丹道武術中找回健康與能量的真實故事
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="fade-in card-glow bg-[#1a1a1a] p-6 rounded-2xl border border-[#d4af37]/20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center text-[#0a0a0a] font-bold text-xl">
+                            李
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#d4af37]">李先生</div>
+                            <div class="text-sm text-[#888]">學習6個月</div>
+                        </div>
+                    </div>
+                    <div class="text-[#ffcc5d] mb-2 font-semibold">健康改善</div>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        「長年的腰痠背痛與失眠困擾明顯改善，現在每天都能睡得很沉穩，精神也變好了。」
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-6 rounded-2xl border border-[#d4af37]/20" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center text-[#0a0a0a] font-bold text-xl">
+                            王
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#d4af37]">王小姐</div>
+                            <div class="text-sm text-[#888]">學習3個月</div>
+                        </div>
+                    </div>
+                    <div class="text-[#ffcc5d] mb-2 font-semibold">能量體悟</div>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        「短時間內就感受到體內能量的流動，這是我練其他運動從未有過的體驗，真的很神奇！」
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-6 rounded-2xl border border-[#d4af37]/20" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center text-[#0a0a0a] font-bold text-xl">
+                            張
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#d4af37]">張先生</div>
+                            <div class="text-sm text-[#888]">學習1年</div>
+                        </div>
+                    </div>
+                    <div class="text-[#ffcc5d] mb-2 font-semibold">體質強化</div>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        「換季不再感冒，冬天不再手腳冰冷，整個人的抵抗力明顯提升，體質改變很多。」
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-6 rounded-2xl border border-[#d4af37]/20" style="transition-delay: 0.3s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center text-[#0a0a0a] font-bold text-xl">
+                            陳
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#d4af37]">陳小姐</div>
+                            <div class="text-sm text-[#888]">學習8個月</div>
+                        </div>
+                    </div>
+                    <div class="text-[#ffcc5d] mb-2 font-semibold">勁力進階</div>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        「終於學會讓力量由內而外發出，不再只是做動作，而是真正理解太極的精髓。」
+                    </p>
+                </div>
+
+                <div class="fade-in card-glow bg-[#1a1a1a] p-6 rounded-2xl border border-[#d4af37]/20" style="transition-delay: 0.4s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-[#d4af37] rounded-full flex items-center justify-center text-[#0a0a0a] font-bold text-xl">
+                            林
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#d4af37]">林先生</div>
+                            <div class="text-sm text-[#888]">學習2年</div>
+                        </div>
+                    </div>
+                    <div class="text-[#ffcc5d] mb-2 font-semibold">心理成長</div>
+                    <p class="text-[#b0b0b0] leading-relaxed">
+                        「工作壓力大的時候，練功能讓我保持專注與從容，真正達到動中求靜的境界。」
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="energy-line"></div>
+
+    <section id="contact" class="py-20 taiji-pattern">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-in text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-6 gradient-text serif">
+                    立即諮詢與報名
+                </h2>
+                <p class="text-xl text-[#b0b0b0] mb-8">
+                    您也想開啟這段轉變之旅嗎？全台班級同步招生中
+                </p>
+            </div>
+
+            <div class="fade-in bg-gradient-to-br from-[#1a1a1a] to-[#2a1a1a] p-8 md:p-12 rounded-2xl border-2 border-[#d4af37]/30 energy-glow" style="transition-delay: 0.2s;">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#d4af37] serif">聯絡資訊</h3>
+                        <div class="space-y-4 text-[#b0b0b0]">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">👨‍🏫</span>
+                                <div>
+                                    <div class="text-sm text-[#888]">聯絡老師</div>
+                                    <div class="font-semibold text-[#d4af37]">吳老師</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">📞</span>
+                                <div>
+                                    <div class="text-sm text-[#888]">報名電話</div>
+                                    <a href="tel:0918148814" class="font-semibold text-[#d4af37] hover:text-[#ffcc5d] transition-colors">
+                                        0918-14-88-14
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">✉️</span>
+                                <div>
+                                    <div class="text-sm text-[#888]">Email</div>
+                                    <a href="/cdn-cgi/l/email-protection#b4c0c3828c8c8df4d3d9d5ddd89ad7dbd9" class="font-semibold text-[#d4af37] hover:text-[#ffcc5d] transition-colors">
+                                        <span class="__cf_email__" data-cfemail="532724656b6b6a13343e323a3f7d303c3e">[email&#160;protected]</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🌐</span>
+                                <div>
+                                    <div class="text-sm text-[#888]">官網</div>
+                                    <a href="http://www.tw6889.com/m09.html" target="_blank" class="font-semibold text-[#d4af37] hover:text-[#ffcc5d] transition-colors break-all">
+                                        www.tw6889.com/m09.html
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#d4af37] serif">快速聯絡</h3>
+                        <div class="space-y-4">
+                            <a href="tel:0918148814" class="btn-primary w-full block text-center">
+                                📞 點我撥打報名電話
+                            </a>
+                            <a href="/cdn-cgi/l/email-protection#037774353b3b3a43646e626a6f2d606c6e" class="btn-secondary w-full block text-center">
+                                ✉️ Email諮詢
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#0a0a0a]/50 p-6 rounded-xl border border-[#d4af37]/20 text-center">
+                    <p class="text-lg text-[#d4af37] font-semibold mb-2">
+                        🌟 現在報名，開啟您的能量修煉之旅 🌟
+                    </p>
+                    <p class="text-[#b0b0b0]">
+                        找回身體失落的勁氣能量，從內而外重塑健康與生命力
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a0a0a] border-t border-[#d4af37]/20 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="taiji-symbol" style="width: 40px; height: 40px;"></div>
+                        <span class="text-xl font-bold gradient-text serif">太極拳丹道武術</span>
+                    </div>
+                    <p class="text-[#888] leading-relaxed">
+                        傳承民國時期古法太極<br>
+                        專注內在勁氣能量開發
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-[#d4af37] mb-4 serif">快速導航</h3>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-[#888] hover:text-[#d4af37] transition-colors">首頁</a>
+                        <a href="#about" class="block text-[#888] hover:text-[#d4af37] transition-colors">關於我們</a>
+                        <a href="#courses" class="block text-[#888] hover:text-[#d4af37] transition-colors">課程系統</a>
+                        <a href="#testimonials" class="block text-[#888] hover:text-[#d4af37] transition-colors">學員心得</a>
+                        <a href="#contact" class="block text-[#888] hover:text-[#d4af37] transition-colors">聯絡報名</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-[#d4af37] mb-4 serif">聯絡方式</h3>
+                    <div class="space-y-2 text-[#888]">
+                        <p>📞 0918-14-88-14</p>
+                        <p>✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ccb8bbfaf4f4f58caba1ada5a0e2afa3a1">[email&#160;protected]</a></p>
+                        <p>🌐 www.tw6889.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-[#d4af37]/20 pt-8 text-center">
+                <p class="text-[#888] mb-4">
+                    © 2024 太極拳丹道武術教學. All rights reserved.
+                </p>
+                <a href="https://kuse.ai" target="_blank" rel="noopener noreferrer" class="kuse-branding inline-flex">
+                    <span>made with</span>
+                    <svg viewBox="0,0,160,44" xmlns="http://www.w3.org/2000/svg"><path d="m.01,20.65C-.43,8.25,9.3-2.03,22.04.34,34.78,2.72,43.29,8.32,43.29,22.9s-8.66,19.01-22.03,20.3C7.9,44.5.46,33.05.01,20.65z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="m146.76,7.94c8.07,0,13.24,6.15,13.24,14.58v1.39h-20.75c.45,4.05,3.51,7.37,8.57,7.37,2.62,0,5.73-1.05,7.62-2.94l2.67,3.83c-2.67,2.55-6.62,3.88-10.9,3.88-8.07,0-14.08-5.6-14.08-14.08,0-7.76,5.67-14.02,13.63-14.02zm0,4.77c-5.01,0-7.29,3.83-7.57,7.1h15.13c-.11-3.16-2.28-7.1-7.57-7.1z" fill="currentColor"/><path d="m86.64,24.49c0,4.15,2.39,6.84,6.84,6.84,4.4,0,6.84-2.69,6.84-6.84V8.55h5.37v16.33c0,6.7-4.06,11.14-12.21,11.14-8.21,0-12.21-4.5-12.21-11.09V8.55h5.37v15.94zm32.99-16.55c4.49,0,8.06,1.47,10.6,3.86l-2.59,3.81c-2.05-2-5.28-3.08-8.06-3.08-2.88,0-4.84,1.37-4.84,3.32,0,1.91,2.64,2.54,5.81,3.27,4.59,1.08,10.26,2.4,10.26,8.46,0,4.94-3.76,8.41-11.14,8.41-4.98,0-8.94-1.76-11.24-4.11l2.54-4.11c1.86,1.91,5.18,3.67,8.84,3.67,3.91,0,5.57-1.66,5.57-3.62,0-2.3-2.88-2.98-6.21-3.76-4.54-1.08-9.87-2.3-9.87-8.06,0-4.5,4.2-8.06,10.31-8.06zM60.79,20.82,71.44,8.55h6.5L66.46,21.26,78.82,35.44h-6.5l-9.28-11.1-2.25,2.49v8.6h-5.33V8.55h5.33v12.27z" fill="currentColor"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const navbar = document.getElementById(`navbar`);
+        const mobileMenuBtn = document.getElementById(`mobile-menu-btn`);
+        const mobileMenu = document.getElementById(`mobile-menu`);
+        const navLinks = document.querySelectorAll(`.nav-link`);
+
+        window.addEventListener(`scroll`, () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add(`nav-shadow`);
+            } else {
+                navbar.classList.remove(`nav-shadow`);
+            }
+        });
+
+        mobileMenuBtn.addEventListener(`click`, () => {
+            mobileMenu.classList.toggle(`active`);
+            mobileMenuBtn.textContent = mobileMenu.classList.contains(`active`) ? `✕` : `☰`;
+        });
+
+        document.querySelectorAll(`a[href^="#"]`).forEach(anchor => {
+            anchor.addEventListener(`click`, function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute(`href`));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: `smooth`
+                    });
+                    mobileMenu.classList.remove(`active`);
+                    mobileMenuBtn.textContent = `☰`;
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: `0px 0px -50px 0px`
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(`visible`);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(`.fade-in`).forEach(el => {
+            observer.observe(el);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener(`click`, () => {
+                navLinks.forEach(l => l.classList.remove(`active`));
+                link.classList.add(`active`);
+            });
+        });
+    </script>
+
+    <script src="https://cdn.kuse.ai/sdk.prd.js"></script>
+</body>
+</html>
