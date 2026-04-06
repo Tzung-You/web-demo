@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修煉體系與功法詳解 - 太極拳丹道武術</title>
+    <title>教學體系詳解 - 太極拳丹道武術</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -13,36 +13,45 @@
         .gradient-text { background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 50%, #ff9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .nav-link { position: relative; padding: 0.5rem 0; transition: 0.3s; font-weight: 500; }
         .nav-link:hover { color: var(--gold); }
-        .section-title { border-left: 6px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2.5rem; }
         .art-card { background: #111; border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 1.5rem; transition: 0.3s; }
         .art-card:hover { border-color: var(--gold); background: #161616; }
+        .section-title { border-left: 6px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2.5rem; }
         .taiji-symbol { width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 10s linear infinite; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="pt-24 px-6">
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#d4af37]/20 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center text-sm font-bold">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a] border-b border-[#d4af37]/20 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center text-sm">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="taiji-symbol"></div>
                 <span class="text-xl font-black gradient-text serif tracking-tight">太極拳丹道武術</span>
             </a>
-            <div class="hidden md:flex items-center gap-10">
+            <div class="hidden md:flex items-center gap-10 font-bold">
                 <a href="index.html" class="nav-link">首頁入口</a>
                 <a href="courses.html" class="nav-link text-[#d4af37]">教學體系</a>
-                <a href="media.html" class="nav-link">影音專區</a>
+                <a href="media.html" class="nav-link">影音專專區</a>
                 <a href="admission.html" class="nav-link">最新招生</a>
                 <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link text-[#d4af37]">老師網誌</a>
             </div>
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-2xl font-bold p-2 focus:outline-none">☰</button>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto py-20">
+    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-[#0a0a0a] border-b border-[#d4af37]/20 z-40 flex flex-col items-center py-8 gap-6 font-bold text-lg md:hidden">
+        <a href="index.html">首頁入口</a>
+        <a href="courses.html" class="text-[#d4af37]">教學體系</a>
+        <a href="media.html">影音專區</a>
+        <a href="admission.html">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <main class="max-w-6xl mx-auto py-16">
         <h1 class="text-4xl font-black gradient-text serif text-center mb-20 tracking-widest uppercase">丹道武術：各門功法修煉指南</h1>
 
         <section class="mb-24">
             <div class="section-title">
-                <h2 class="text-3xl font-black serif">一、 養生與基礎內功（築基與調理）</h2>
+                <h2 class="text-3xl font-black serif text-white">一、 養生與基礎內功（築基與調理）</h2>
                 <p class="text-gray-500 mt-2">適合所有初學者，重點在於打通經絡、調理臟腑。</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
@@ -71,7 +80,7 @@
 
         <section class="mb-24">
             <div class="section-title">
-                <h2 class="text-3xl font-black serif">二、 核心丹道與心法（能量積累）</h2>
+                <h2 class="text-3xl font-black serif text-white">二、 核心丹道與心法（能量積累）</h2>
                 <p class="text-gray-500 mt-2">透過呼吸與意識的引導，由內而外開發「勁氣能量」。</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
@@ -90,7 +99,7 @@
 
         <section class="mb-24">
             <div class="section-title">
-                <h2 class="text-3xl font-black serif">三、 傳統太極拳（架勢與勁力）</h2>
+                <h2 class="text-3xl font-black serif text-white">三、 傳統太極拳（架勢與勁力）</h2>
                 <p class="text-gray-500 mt-2">傳承正統古法，從架勢中修煉勁力與氣的運作。</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
@@ -109,10 +118,10 @@
 
         <section class="mb-24">
             <div class="section-title">
-                <h2 class="text-3xl font-black serif">四、 進階內家武學（深度應用）</h2>
+                <h2 class="text-3xl font-black serif text-white">四、 進階內家武學（深度應用）</h2>
                 <p class="text-gray-500 mt-2">追求更高等級整勁、暗勁的勁力運用與身法。</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="art-card">
                     <h3 class="text-xl font-bold text-[#d4af37] mb-4">形意拳</h3>
                     <p class="text-gray-400 mb-2"><strong>重點：</strong> 五行拳、十二形、勁力直截、發力威猛。</p>
@@ -132,8 +141,10 @@
         </section>
     </main>
 
-    <footer class="py-20 text-center border-t border-white/5 text-gray-700 text-xs tracking-widest uppercase">
-        © 2026 TAIJI DAN DAO MARTIAL ARTS | 吳老師 0918-14-88-14
-    </footer>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    </script>
 </body>
 </html>

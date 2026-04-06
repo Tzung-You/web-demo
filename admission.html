@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全台實體教學課表 - 太極拳丹道武術</title>
+    <title>全台實體課表 - 太極拳丹道武術</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -11,50 +11,53 @@
         .gradient-text { background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 50%, #ff9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         th { background: #d4af37; color: #000; padding: 1.5rem; font-weight: 900; }
         td { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .taiji-symbol { width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(to right, #d4af37 50%, #1a1a1a 50%); animation: rotate 10s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="pt-24 px-6">
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#d4af37]/20 h-20 flex items-center">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a] border-b border-[#d4af37]/20 h-20 flex items-center">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center text-sm font-bold">
-            <a href="index.html" class="gradient-text serif text-xl font-black">太極拳丹道武術</a>
+            <a href="index.html" class="flex items-center gap-3"><div class="taiji-symbol"></div><span class="text-xl font-black gradient-text serif tracking-tight">太極拳丹道武術</span></a>
             <div class="hidden md:flex items-center gap-10">
                 <a href="index.html">首頁入口</a>
-                <a href="courses.html">教學體體</a>
+                <a href="courses.html">教學體系</a>
                 <a href="media.html">影音專區</a>
                 <a href="admission.html" class="text-[#d4af37]">最新招生</a>
-                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link text-[#d4af37]">老師網誌</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
             </div>
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-2xl font-bold p-2 focus:outline-none">☰</button>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto py-16">
-        <h1 class="text-4xl font-black text-center mb-16 serif gradient-text">全台教學據點與課表</h1>
-        
-        <div class="bg-[#111] rounded-2xl overflow-hidden border border-[#d4af37]/30 shadow-2xl mb-12">
-            <table class="w-full text-center">
-                <thead>
-                    <tr><th>地區班別</th><th>上課時間</th><th>地點詳細資訊</th><th>學費費用</th></tr>
-                </thead>
+    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-[#0a0a0a] border-b border-[#d4af37]/20 z-40 flex flex-col items-center py-8 gap-6 font-bold text-lg md:hidden">
+        <a href="index.html">首頁入口</a>
+        <a href="courses.html">教學體系</a>
+        <a href="media.html">影音專區</a>
+        <a href="admission.html" class="text-[#d4af37]">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <main class="max-w-6xl mx-auto py-16 text-center">
+        <h1 class="text-4xl font-black mb-16 serif gradient-text">全台教學據點與課表</h1>
+        <div class="overflow-x-auto rounded-2xl border border-[#d4af37]/30 shadow-2xl mb-12">
+            <table class="w-full">
+                <thead><tr><th>地區班別</th><th>上課時間</th><th>地點資訊</th><th>學費費用</th></tr></thead>
                 <tbody class="text-lg">
-                    <tr><td class="text-[#d4af37] font-bold">台北班</td><td>週六 09:00 - 11:30</td><td>復盛區民活動中心 - 市民大道5段99號 3樓教室 </td><td>6,000 / 9 堂 </td></tr>
-                    <tr><td class="text-[#d4af37] font-bold">新竹班</td><td>週五 19:00 - 20:30</td><td>清華大學 - 南大分校 推廣教學大樓1樓 </td><td>5,000 / 9 堂 </td></tr>
-                    <tr><td class="text-[#d4af37] font-bold">台中班</td><td>週四 18:30 - 20:30</td><td>科博館前門 太空劇場迴廊 </td><td>6,000 / 10 堂 </td></tr>
-                    <tr><td class="text-[#d4af37] font-bold">台南班</td><td>週六 17:00 - 19:30</td><td>成功大學光復校區 雲平大樓迴廊 </td><td>4,000 / 9 堂 </td></tr>
+                    <tr><td class="text-[#d4af37] font-bold">台北班</td><td>週六 09:00 - 11:30</td><td>復盛區民活動中心</td><td>6,000 / 9 堂</td></tr>
+                    <tr><td class="text-[#d4af37] font-bold">新竹班</td><td>週五 19:00 - 20:30</td><td>清華大學南大分校</td><td>5,000 / 9 堂</td></tr>
+                    <tr><td class="text-[#d4af37] font-bold">台中班</td><td>週四 18:30 - 20:30</td><td>台中科博館前門</td><td>6,000 / 10 堂</td></tr>
+                    <tr><td class="text-[#d4af37] font-bold">台南班</td><td>週六 17:00 - 19:30</td><td>成功大學光復校區</td><td>4,000 / 9 堂</td></tr>
                 </tbody>
             </table>
         </div>
-
-        <div class="bg-[#181818] p-12 rounded-3xl border-l-8 border-[#d4af37] text-center">
-            <h2 class="text-3xl font-black mb-6 serif">實體課程詳細資訊</h2>
-            <p class="text-gray-400 mb-10 leading-relaxed text-lg">每期開課日期與報名細節，請優先關注 Facebook 官方帳號 。</p>
-            <a href="https://www.facebook.com/profile.php?id=100057333705024" target="_blank" class="inline-block bg-[#1877F2] text-white px-12 py-4 rounded-xl font-black text-xl hover:scale-105 transition">Facebook 最新招生動態</a>
-        </div>
-
-        <footer class="mt-32 text-center pt-20 border-t border-white/5">
-            <h2 class="text-2xl font-bold mb-6 gradient-text">聯絡吳老師</h2>
-            <p class="text-4xl font-black mb-4">0918-14-88-14</p>
-            <p class="text-gray-500 mb-10">tw6889@gmail.com</p>
-        </footer>
+        <div class="bg-[#181818] p-12 rounded-3xl border-l-8 border-[#d4af37]"><a href="https://www.facebook.com/profile.php?id=100057333705024" target="_blank" class="inline-block bg-[#1877F2] text-white px-12 py-4 rounded-xl font-black text-xl hover:scale-105 transition">Facebook 最新招生動態</a></div>
     </main>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    </script>
 </body>
 </html>
