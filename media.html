@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影音教學專區 - 太極拳丹道武術</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #0a0a0a; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: #e0e0e0; overflow-x: hidden; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        .gradient-text { background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 50%, #ff9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { position: relative; padding: 0.5rem 0; transition: 0.3s; font-weight: 500; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; border: 1px solid rgba(212,175,55,0.2); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-card { background: #111; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .video-card:hover { border-color: var(--gold); background: #161616; }
+        .unit-header { border-left: 8px solid var(--gold); padding-left: 1.5rem; margin: 4rem 0 2rem 0; }
+        .taiji-symbol { width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 10s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="pt-24 px-6">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#d4af37]/20 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center text-sm font-bold">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="taiji-symbol"></div>
+                <span class="text-xl font-black gradient-text serif tracking-tight">太極拳丹道武術</span>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a href="index.html" class="nav-link">首頁入口</a>
+                <a href="courses.html" class="nav-link">教學體系</a>
+                <a href="media.html" class="nav-link text-[#d4af37]">影音專區</a>
+                <a href="admission.html" class="nav-link">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link text-[#d4af37]">老師網誌</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto py-16">
+        <section class="mb-16 bg-[#1a1a1a] p-8 rounded-3xl border-2 border-red-600/20 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-left">
+                <h2 class="text-2xl font-black mb-2 flex items-center gap-3">
+                    <span class="text-red-600">YouTube</span> 官方頻道
+                </h2>
+                <p class="text-gray-400">訂閱老師頻道，第一時間獲取最新太極功法教學與心法分享，開發您的勁氣能量。</p>
+            </div>
+            <a href="https://www.youtube.com/@tw6889" target="_blank" class="bg-red-600 text-white px-10 py-3 rounded-full font-black text-lg hover:bg-red-700 transition shadow-lg">
+                立即訂閱頻道
+            </a>
+        </section>
+
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-black mb-6 serif gradient-text tracking-tight">影音教學庫：從內在能量開啟太極之路</h1>
+            <p class="text-gray-400 text-lg italic">忠實呈現古法太極精髓，手把手引導您進入丹道境界</p>
+        </div>
+
+        <section>
+            <div class="unit-header">
+                <h2 class="text-3xl font-bold serif">第一單元：內功與勁氣的核心 (初學者必看)</h2>
+                <p class="text-gray-500 mt-2 italic text-sm">重點在於打破「只練招式」的誤區，直接感受氣的能量。</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/xZ0MLlobESk" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【太極拳練氣內功三大層次】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 一次看懂練勁氣、養身體、調內功的核心秘訣。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/-28Oajw3V-k" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【什麼是「氣」的能量？】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 讓您親眼看見氣的凝聚與流動，不再只是抽象理論。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/To2TLkAHCP0" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【放鬆的秘訣：打開勁氣的第一步】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 揭開太極拳放鬆的真正節奏，解決練拳「沒勁」的問題。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="unit-header">
+                <h2 class="text-3xl font-bold serif">第二單元：基礎實作教學 (跟著老師練)</h2>
+                <p class="text-gray-500 mt-2 italic text-sm">提供具體的練習方法，讓學員在家也能感受身體的變化。</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/7LE819k0ibc" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【內氣運行導引術：實作跟練】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 吳老師親自引導，建立每日修煉的基礎動能。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/jANwGxxDyTk" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【一招蓄集丹田能量】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 針對現代人普遍氣血虛弱問題，練出養生「罡氣」。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/VUtqB6IXHOs" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【太極呼吸法：啟動內勁關鍵】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 完整教學如何透過正確吐納連結內在能量。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="unit-header">
+                <h2 class="text-3xl font-bold serif">第三單元：進階內勁應用 (懂勁與發勁)</h2>
+                <p class="text-gray-500 mt-2 italic text-sm">追求更高等級整勁、暗勁的勁力運用與身法。</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/XGBINQRsGMk" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【如何練出內勁：懂勁的層次】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 從肢體動作進入勁氣功夫，不再依賴拙力。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/FCqOV2AtyPg" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【纏絲勁的威力：少走20年冤枉路】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 說明如何將轉動轉化為身體內部的勁氣運轉。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/bp_wnX_fgf4" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【推手應用：以氣領勁轉化力量】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 實戰中的勁力運用，展現太極「化勁」與「發勁」之美。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="unit-header">
+                <h2 class="text-3xl font-bold serif">第四單元：古法傳承與養生 (調理機能)</h2>
+                <p class="text-gray-500 mt-2 italic text-sm">結合傳統醫理，透過內功達到深度養生效果。</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/82HRE6uJ4_g" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【練五行氣‧養五臟】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 結合形意心法，透過五行拳蓄養內臟能量。</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-container mb-4"><iframe src="https://www.youtube.com/embed/B3jMKvd6Tgg" frameborder="0" allowfullscreen></iframe></div>
+                    <h4 class="font-bold mb-2 text-white italic">【運動內臟：提升健身功效】</h4>
+                    <p class="text-gray-500 text-xs leading-relaxed">內容： 說明如何利用內勁達到深層的臟腑養生效果。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 text-center border-t border-white/5 text-gray-700 text-xs tracking-widest uppercase">
+        © 2026 TAIJI DAN DAO MARTIAL ARTS | 吳老師 0918-14-88-14
+    </footer>
+</body>
+</html>

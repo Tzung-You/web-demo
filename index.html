@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太極拳丹道武術 - 官方網站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #0a0a0a; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: #e0e0e0; overflow-x: hidden; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        .gradient-text { background: linear-gradient(135deg, #d4af37 0%, #ffcc5d 50%, #ff9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { position: relative; padding: 0.5rem 0; transition: 0.3s; font-weight: 500; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: 0.3s; }
+        .nav-link:hover { color: var(--gold); }
+        .card-glow { background: #161616; border: 1px solid rgba(212, 175, 55, 0.1); transition: 0.4s; }
+        .card-glow:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212,175,55,0.1); }
+        .taiji-symbol { width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 10s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 1s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#d4af37]/20 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="taiji-symbol"></div>
+                <span class="text-xl font-black gradient-text serif tracking-tight">太極拳丹道武術</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm">
+                <a href="index.html" class="nav-link text-[#d4af37]">首頁入口</a>
+                <a href="courses.html" class="nav-link">教學體系</a>
+                <a href="media.html" class="nav-link">影音專區</a>
+                <a href="testimonials.html" class="nav-link">學員心得</a>
+                <a href="admission.html" class="nav-link">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link border-l border-white/20 pl-6 text-[#d4af37]">老師網誌</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-48 pb-32 px-6 text-center">
+        <div class="fade-in max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-black mb-10 serif leading-tight">太極，是內在能量的修煉<br><span class="gradient-text">而不僅僅是外在招式的演練</span></h1>
+            <p class="text-2xl md:text-3xl text-[#d4af37] mb-12 serif italic">「太極的靈魂不在套路，而在於體內的勁氣能量。」</p>
+            <p class="text-gray-400 text-lg leading-relaxed mb-12 max-w-3xl mx-auto">找回身體失落的「勁氣能量」，透過丹道太極，從內而外調理機能，重塑您的健康與生命力。</p>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <a href="courses.html" class="bg-[#d4af37] text-black px-12 py-4 rounded-lg font-black text-xl hover:shadow-[0_0_20px_#d4af37] transition">深入探索修煉體系</a>
+                <a href="admission.html" class="border-2 border-[#d4af37] text-[#d4af37] px-12 py-4 rounded-lg font-black text-xl hover:bg-[#d4af37]/10 transition">查看全台課表</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 bg-[#0d0d0d] px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-16 gradient-text serif tracking-widest">三大核心修煉重點 —— 專業簡單化</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in card-glow p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-[#d4af37] mb-4">【練氣：開發能量】</h4>
+                    <p class="text-gray-400">透過正確的呼吸與引導，感受體內「氣」的流動，喚醒沉睡的身體機能。</p>
+                </div>
+                <div class="fade-in card-glow p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-[#d4af37] mb-4">【積功：調理臟腑】</h4>
+                    <p class="text-gray-400">利用勁氣產生的微內震動，按摩平日運動不到的內臟，從根本改善體質。</p>
+                </div>
+                <div class="fade-in card-glow p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-[#d4af37] mb-4">【運勁：身心合一】</h4>
+                    <p class="text-gray-400">將內氣轉化為綿延不斷的勁力，不僅讓身體靈活有力，更能達到延年益壽、壓力釋放。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-[#0a0a0a]">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 fade-in">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-black mb-6 gradient-text serif">大師隨筆：太極的智慧心法</h2>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">四十載習武心得、古籍解析與對當代健康修煉的深刻洞見。將艱深的太極理論轉化為現代人的生命智慧。</p>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37] font-bold text-lg border-b-2 border-[#d4af37] pb-1 hover:text-white transition">前往閱讀老師網誌 →</a>
+            </div>
+            <div class="md:w-1/2 bg-[#1a1a1a] p-10 rounded-3xl border border-[#d4af37]/20 shadow-2xl">
+                <p class="text-xl text-[#d4af37] font-bold serif italic">「學習太極，不分年齡與基礎。只要你願意靜下心來，就能親自體會到生命帶來的驚人蛻變。」</p>
+                <p class="text-right text-gray-500 mt-4">— 吳老師隨筆</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-white/5 text-gray-700 text-xs tracking-widest uppercase">
+        © 2026 TAIJI DAN DAO | 吳老師 0918-14-88-14
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
