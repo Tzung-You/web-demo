@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+##pro
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教學體系詳解 - 太極拳丹道武術</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@300;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #050505; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg); color: #e0e0e0; overflow-x: hidden; line-height: 1.8; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        
+        /* 玻璃擬態卡片 */
+        .glass-card { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 3.5rem; 
+            border-radius: 2rem; 
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(212,175,55,0.05), transparent);
+            transform: skewX(-20deg); transition: 0.7s;
+        }
+        .glass-card:hover::before { left: 150%; }
+        .glass-card:hover { 
+            border-color: rgba(212,175,55,0.2); 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.05); 
+        }
+
+        .gradient-text { background: linear-gradient(135deg, #f9f295 0%, #d4af37 50%, #b8860b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { position: relative; padding: 0.5rem 0; font-weight: 500; transition: color 0.4s; letter-spacing: 0.05em; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1px; background: var(--gold); transition: all 0.4s; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+
+        .section-title { border-left: 2px solid var(--gold); padding-left: 2.5rem; margin-bottom: 5rem; position: relative; }
+        .section-title::before { content: ''; position: absolute; left: -5px; top: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        
+        /* 禪意背景光暈 */
+        .zen-orb { position: fixed; border-radius: 50%; filter: blur(150px); opacity: 0.15; z-index: -1; animation: drift 20s infinite alternate linear; pointer-events: none; }
+        @keyframes drift { 0% { transform: translate(0, 0); } 100% { transform: translate(100px, -100px); } }
+        .taiji-symbol { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 15s linear infinite; }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="zen-orb bg-[#d4af37] w-[50vw] h-[50vw] top-[-10%] left-[-10%]"></div>
+    <div class="zen-orb bg-white w-[40vw] h-[40vw] bottom-[-20%] right-[-10%]" style="animation-duration: 25s;"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-[#d4af37]/10 h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="taiji-symbol group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition"></div>
+                <span class="text-xl md:text-2xl font-black gradient-text serif tracking-[0.15em] uppercase">太極拳丹道武術</span>
+            </a>
+            <div class="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
+                <a href="index.html" class="nav-link text-gray-300">首頁</a>
+                <a href="courses.html" class="nav-link text-[#d4af37]">教學體系</a>
+                <a href="media.html" class="nav-link text-gray-300">影音專區</a>
+                <a href="admission.html" class="nav-link text-gray-300">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link pl-8 border-l border-white/10 text-[#d4af37]">老師網誌</a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-3xl focus:outline-none">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-3xl z-40 flex flex-col items-center justify-center gap-10 font-serif text-2xl tracking-[0.2em] opacity-0 pointer-events-none transition-opacity duration-500">
+        <a href="index.html" class="text-gray-300">首頁</a>
+        <a href="courses.html" class="text-[#d4af37]">教學體系</a>
+        <a href="media.html" class="text-gray-300">影音專區</a>
+        <a href="admission.html" class="text-gray-300">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <main class="max-w-7xl mx-auto pt-40 pb-24 px-6 md:px-12 relative z-10">
+        
+        <header class="text-center mb-40 reveal">
+            <h1 class="text-5xl md:text-7xl font-black gradient-text serif tracking-[0.2em] uppercase mb-10 leading-tight drop-shadow-lg">
+                各門功法修煉指南
+            </h1>
+            <div class="w-12 h-1 bg-[#d4af37] mx-auto mb-10"></div>
+            <p class="text-gray-400 text-lg md:text-xl font-light max-w-4xl mx-auto leading-loose tracking-wide">
+                傳承民國正統內家功夫，將深奧的丹道心法轉化為科學、系統化的修煉階梯。<br class="hidden md:block">
+                確保學員每一分鐘的投入皆能產生真實的體感共鳴。
+            </p>
+        </header>
+
+        <section class="mb-48">
+            <div class="section-title reveal">
+                <span class="text-[#d4af37] text-sm tracking-[0.4em] uppercase block mb-3">Phase I</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">養生與基礎內功 <span class="text-gray-500 font-light text-2xl">(築基)</span></h2>
+                <p class="text-gray-500 mt-4 text-lg font-light tracking-wide">適合所有初學者，核心在於打通周身經絡、調理內部臟腑機能。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass-card reveal">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">太極拳站樁內功</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            追求骨架結構的絕對精準對準，配合高度放鬆心法，建立下盤如樹紮根的穩固。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            建立紮實武學根基，校正長期體態不正，開發體內最初的「氣感」積累。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-100">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">太極拳鬆身內功</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            追求大關節與深層肌肉的極致放鬆，以意領動，徹底破除身體原有僵勁。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            釋放壓力引起的慢性僵硬，增加關節間隙，全面活化筋骨系統。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">古傳八段錦</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            動作精準對應經絡，強調大幅度拉伸與呼吸吐納的深度整合運作。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            撐筋拔骨，調理氣血循環，強化五臟六腑的生理代謝機能。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-100">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">古傳五禽戲</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            模仿五獸神態，引導肢體進行極高維度的動態伸展與意識導引。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            疏肝理氣，健脾強心，從根本提升免疫力，為古老防病養生之法。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-48">
+            <div class="section-title reveal">
+                <span class="text-[#d4af37] text-sm tracking-[0.4em] uppercase block mb-3">Phase II</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">核心丹道與心法 <span class="text-gray-500 font-light text-2xl">(能量積累)</span></h2>
+                <p class="text-gray-500 mt-4 text-lg font-light tracking-wide">透過高級意識與呼吸導引，開發體內隱藏的「勁氣能量」。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass-card reveal">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">丹道氣功 (小周天)</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            練習意守丹田、打通督任兩脈的小周天能量運轉、學習如何高效採集與儲存自然能量。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            培補先天元氣、大幅度提升生命活力、達到身、心、靈三個層面的深度修復。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-100">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">陳式正傳心法</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            追求內外合一的運作邏輯、精準校正呼吸節奏與肢體動作的同步勁力傳導路徑。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            開發體內微細的能量傳輸通道、使所有太極動作具備「穿透性」的勁力品質。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-48">
+            <div class="section-title reveal">
+                <span class="text-[#d4af37] text-sm tracking-[0.4em] uppercase block mb-3">Phase III</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">傳統太極拳 <span class="text-gray-500 font-light text-2xl">(架勢與勁力)</span></h2>
+                <p class="text-gray-500 mt-4 text-lg font-light tracking-wide">傳承民國初期宗師古法，修煉內家拳核心的整勁與氣運。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass-card reveal">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">楊式正傳老架</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            要求架勢舒展大方、中正平穩、在極慢的節奏中展現輕靈圓活與連綿不斷的整勁。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            高度調節中樞神經系統、修心養性、大幅增強身體重心的穩定度與下肢平衡力。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-100">
+                    <h3 class="text-2xl font-bold text-white mb-8 serif tracking-widest">陳式太極拳大架</h3>
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest mr-2">【修煉】</span>
+                            核心在於「纏絲勁」的螺旋運動原理、呈現剛柔並濟、快慢相間的動態力感。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest mr-2">【功效】</span>
+                            強壯骨骼與韌帶彈性、增加大關節靈活空間、訓練具備驚人穿透力的爆發力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-48">
+            <div class="section-title reveal">
+                <span class="text-[#d4af37] text-sm tracking-[0.4em] uppercase block mb-3">Phase IV</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">進階內家武學 <span class="text-gray-500 font-light text-2xl">(應用指南)</span></h2>
+                <p class="text-gray-500 mt-4 text-lg font-light tracking-wide">追求高階整勁、暗勁的實戰運用，開發全身各個關節的發力。</p>
+            </div>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="glass-card reveal">
+                    <h3 class="text-xl font-bold text-white mb-8 serif tracking-widest uppercase">形意拳 <span class="block text-sm text-[#d4af37] mt-2 font-light">五行與十二形</span></h3>
+                    <div class="space-y-6 flex-grow text-sm">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest block mb-1">【修煉】</span>
+                            追求勁力直截了當、發力威猛如炮。強調「起如風、落如箭」的穿透性勁力。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest block mb-1">【功效】</span>
+                            極大化增強意志力、提升瞬間爆發能量、有效強化心肺功能與精神張力。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-100">
+                    <h3 class="text-xl font-bold text-white mb-8 serif tracking-widest uppercase">八卦掌 <span class="block text-sm text-[#d4af37] mt-2 font-light">走圈與轉掌</span></h3>
+                    <div class="space-y-6 flex-grow text-sm">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest block mb-1">【修煉】</span>
+                            核心在於身隨步動、腰隨意轉。要求步法變幻莫測，在快速旋轉中保持中正。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest block mb-1">【功效】</span>
+                            訓練極致的敏捷性、強化腰胯核心旋轉力量、達到真正的「動中求靜」境界。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal delay-200">
+                    <h3 class="text-xl font-bold text-white mb-8 serif tracking-widest uppercase">八極拳 <span class="block text-sm text-[#d4af37] mt-2 font-light">短打與發勁</span></h3>
+                    <div class="space-y-6 flex-grow text-sm">
+                        <p class="text-gray-400 font-light leading-loose">
+                            <span class="text-[#d4af37] font-bold tracking-widest block mb-1">【修煉】</span>
+                            強調貼身短打、發力剛勁且帶有沉墜勁、注重崩憾突擊的瞬間爆發。
+                        </p>
+                        <p class="text-gray-500 font-light leading-loose border-t border-white/5 pt-6">
+                            <span class="text-white font-bold tracking-widest block mb-1">【功效】</span>
+                            訓練強大的沉墜穩定勁、增強身體抗衝擊力、在近距離具備極高實戰價值。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 relative reveal rounded-[3rem] overflow-hidden border border-[#d4af37]/20 shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#111] to-[#050505]"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 mix-blend-overlay"></div>
+            <div class="absolute top-[-20%] right-[-10%] w-[50%] h-[150%] bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+            
+            <div class="relative z-10 px-10 md:px-20 text-center">
+                <span class="text-[#d4af37] text-sm tracking-[0.5em] uppercase font-bold block mb-6">The Master</span>
+                <h2 class="text-4xl md:text-5xl font-black text-white serif mb-16 tracking-widest">傳統古法太極守護者：吳老師</h2>
+                <div class="max-w-3xl mx-auto text-lg text-gray-400 leading-loose font-light space-y-10">
+                    <p class="text-[#d4af37] font-serif italic text-3xl tracking-[0.1em]">「練拳四十載，教拳二十秋。」</p>
+                    <p>吳老師自幼投身武學領域，深得民國時期內家拳傳承精髓。教學風格嚴謹，特別強調「身體結構的精準校正」與「內功體感的真實建立」。</p>
+                    <p>為了讓現代人也能掌握這門深奧技藝，老師將原本艱澀難懂的古籍丹道理論，重新編撰為一套科學、分階、且具備高度實踐性的練習體系。</p>
+                    <p class="text-gray-500 italic mt-8 text-sm tracking-wide">「太極不僅僅是招式，它是身心能量的科學轉化。」—— 吳老師。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-24 text-center border-t border-white/5 bg-[#050505] relative z-10">
+        <div class="mb-12 flex justify-center items-center gap-8">
+            <div class="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#d4af37]/30"></div>
+            <div class="taiji-symbol opacity-40" style="width: 24px; height: 24px;"></div>
+            <div class="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#d4af37]/30"></div>
+        </div>
+        <p class="text-gray-600 text-xs tracking-[0.6em] uppercase mb-8 font-black">
+            © 2026 TAIJI DAN DAO MARTIAL ARTS | ALL RIGHTS RESERVED
+        </p>
+        <p class="text-gray-300 font-serif text-2xl md:text-3xl tracking-widest">
+            諮詢專線：<span class="text-[#d4af37]">0918-14-88-14</span>
+        </p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.style.opacity === '1';
+            mobileMenu.style.opacity = isOpen ? '0' : '1';
+            mobileMenu.style.pointerEvents = isOpen ? 'none' : 'auto';
+            menuBtn.textContent = isOpen ? '☰' : '✕';
+        });
+
+        // 點擊選單項目後自動關閉
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.pointerEvents = 'none';
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

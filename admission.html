@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+##PRO
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全台課表與招生資訊 - 太極拳丹道武術</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@300;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #050505; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg); color: #e0e0e0; overflow-x: hidden; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        
+        .gradient-text { background: linear-gradient(135deg, #f9f295 0%, #d4af37 50%, #b8860b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* 導覽列特效 */
+        .nav-link { position: relative; padding: 0.5rem 0; font-weight: 500; transition: color 0.4s; letter-spacing: 0.05em; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1px; background: var(--gold); transition: all 0.4s; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+
+        /* 玻璃數據表與卡片 */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        /* 表格樣式 */
+        table { width: 100%; border-collapse: collapse; }
+        th { background: rgba(212, 175, 55, 0.1); color: #d4af37; padding: 1.5rem 1rem; font-weight: 700; letter-spacing: 0.1em; text-align: center; border-bottom: 1px solid rgba(212,175,55,0.2); }
+        td { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); text-align: center; transition: background 0.4s; font-weight: 300; }
+        tr:hover td { background-color: rgba(255,255,255,0.02); }
+        .tag-location { color: #fff; font-weight: 700; letter-spacing: 0.1em; }
+
+        /* 動畫與視差 */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        
+        .taiji-symbol { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 15s linear infinite; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+        
+        /* 環境光暈 */
+        .ambient-glow { position: fixed; border-radius: 50%; filter: blur(150px); opacity: 0.15; z-index: -1; pointer-events: none; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="ambient-glow bg-[#d4af37] w-[50vw] h-[50vw] top-[20%] left-[25%]"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-[#d4af37]/10 h-24 flex items-center transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="taiji-symbol group-hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-shadow duration-500"></div>
+                <span class="text-xl md:text-2xl font-black gradient-text serif tracking-[0.15em] uppercase">太極拳丹道武術</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
+                <a href="index.html" class="nav-link text-gray-300">首頁</a>
+                <a href="courses.html" class="nav-link text-gray-300">教學體系</a>
+                <a href="media.html" class="nav-link text-gray-300">影音專區</a>
+                <a href="admission.html" class="nav-link text-[#d4af37]">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link pl-8 border-l border-white/10 text-[#d4af37]">老師網誌</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-3xl focus:outline-none">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-3xl z-40 flex flex-col items-center justify-center gap-10 font-serif text-2xl tracking-[0.2em] opacity-0 pointer-events-none transition-opacity duration-500">
+        <a href="index.html" class="text-gray-300 hover:text-[#d4af37] transition">首頁</a>
+        <a href="courses.html" class="text-gray-300 hover:text-[#d4af37] transition">教學體系</a>
+        <a href="media.html" class="text-gray-300 hover:text-[#d4af37] transition">影音專區</a>
+        <a href="admission.html" class="text-[#d4af37]">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <main class="max-w-7xl mx-auto pt-40 pb-24 px-6 md:px-12 relative z-10">
+        
+        <header class="text-center mb-24 reveal">
+            <h1 class="text-5xl md:text-7xl font-black gradient-text serif mb-8 tracking-[0.2em] uppercase drop-shadow-xl">全台課表與據點</h1>
+            <div class="w-16 h-1 bg-[#d4af37] mx-auto mb-8"></div>
+            <p class="text-gray-500 text-lg md:text-xl font-light tracking-[0.1em] max-w-2xl mx-auto leading-loose">
+                數據與雲端同步，您可以隨時在此確認最新開課日期、時間與地點。
+            </p>
+        </header>
+
+        <section class="mb-32 reveal">
+            <div class="glass-panel overflow-x-auto">
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">地區班別</th>
+                            <th class="whitespace-nowrap">上課時間</th>
+                            <th class="whitespace-nowrap">地點資訊</th>
+                            <th class="whitespace-nowrap">學費費用</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body" class="text-gray-300">
+                        <tr>
+                            <td colspan="4" class="py-24 text-center">
+                                <div class="w-10 h-10 border-2 border-[#d4af37]/20 border-t-[#d4af37] rounded-full animate-spin mx-auto mb-4"></div>
+                                <p class="text-[#d4af37] animate-pulse tracking-widest text-sm font-light">正在從雲端讀取最新課表數據...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p class="text-center mt-8 text-gray-600 text-sm italic tracking-widest">
+                * 註：如試算表尚未填寫資料，表格將顯示為空值。
+            </p>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-10 mb-32">
+            
+            <div class="reveal p-12 rounded-[2rem] bg-gradient-to-br from-[#1877F2]/10 to-transparent border border-[#1877F2]/30 backdrop-blur-md hover:-translate-y-2 transition-transform duration-500 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 text-white serif tracking-widest">Facebook 社群互動</h2>
+                    <p class="text-gray-400 font-light leading-loose mb-10">
+                        每日招生動態、學員心得分享以及開課實況影片，請關注官方粉絲團，隨時與老師互動。
+                    </p>
+                </div>
+                <a href="https://www.facebook.com/profile.php?id=100057333705024" target="_blank" class="inline-block text-center bg-[#1877F2]/80 text-white px-8 py-4 rounded-full font-bold tracking-widest text-sm hover:bg-[#1877F2] hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] transition-all">
+                    查看 Facebook 最新動態
+                </a>
+            </div>
+
+            <div class="reveal delay-100 p-12 rounded-[2rem] bg-gradient-to-br from-[#d4af37]/10 to-transparent border border-[#d4af37]/30 backdrop-blur-md hover:-translate-y-2 transition-transform duration-500 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 text-white serif tracking-widest">即時報名諮詢</h2>
+                    <p class="text-gray-400 font-light leading-loose mb-10">
+                        對功法選擇或課程細節有疑問嗎？歡迎直接撥打專線，由老師親自為您解答適合您的修煉之路。
+                    </p>
+                </div>
+                <div class="text-center md:text-left">
+                    <span class="text-[#d4af37]/60 text-xs block mb-2 uppercase tracking-[0.3em] font-bold">Call to Teacher</span>
+                    <a href="tel:0918148814" class="text-3xl md:text-4xl font-black text-[#d4af37] tracking-widest hover:text-white transition-colors">
+                        0918-14-88-14
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="reveal glass-panel p-12 mb-32 border-l-4 border-l-[#d4af37]">
+            <h3 class="text-2xl font-bold text-white mb-10 serif tracking-widest uppercase text-center md:text-left">報名重要須知</h3>
+            <ul class="grid md:grid-cols-2 gap-10 text-gray-400 font-light leading-loose">
+                <li class="flex gap-4 items-start">
+                    <span class="text-[#d4af37] text-lg mt-1">◆</span>
+                    <span>所有課程皆由吳老師親自教學，不假手他人，為確保教學品質，名額有限。</span>
+                </li>
+                <li class="flex gap-4 items-start">
+                    <span class="text-[#d4af37] text-lg mt-1">◆</span>
+                    <span>初學者建議從「養生與基礎內功」開始，穩固根基並建立正確能量通道。</span>
+                </li>
+                <li class="flex gap-4 items-start">
+                    <span class="text-[#d4af37] text-lg mt-1">◆</span>
+                    <span>課程進行中，請穿著寬鬆、吸汗之運動休閒服飾，並自行攜帶充足飲用水。</span>
+                </li>
+                <li class="flex gap-4 items-start">
+                    <span class="text-[#d4af37] text-lg mt-1">◆</span>
+                    <span>若有重大慢性疾病病史，請務必於報名時主動告知，以利老師為您調整強度。</span>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="py-24 text-center border-t border-white/5 bg-[#050505] relative z-10">
+        <div class="mb-12 flex justify-center items-center gap-8">
+            <div class="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#d4af37]/30"></div>
+            <div class="taiji-symbol opacity-40" style="width: 24px; height: 24px;"></div>
+            <div class="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#d4af37]/30"></div>
+        </div>
+        <p class="text-gray-600 text-xs tracking-[0.6em] uppercase mb-8 font-black">
+            © 2026 TAIJI DAN DAO MARTIAL ARTS | ALL RIGHTS RESERVED
+        </p>
+        <p class="text-gray-300 font-serif text-2xl md:text-3xl tracking-widest">
+            官方專線：<span class="text-[#d4af37]">0918-14-88-14</span>
+        </p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.style.opacity === '1';
+            mobileMenu.style.opacity = isOpen ? '0' : '1';
+            mobileMenu.style.pointerEvents = isOpen ? 'none' : 'auto';
+            menuBtn.textContent = isOpen ? '☰' : '✕';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.pointerEvents = 'none';
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Google 試算表串接邏輯
+        const spreadsheetId = '18Rah2LwqrAWVPgXb0UZQoL1P93-aUFhr_SeuXNSkbTI';
+        const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv`;
+
+        async function fetchSchedule() {
+            const tableBody = document.getElementById('schedule-body');
+            try {
+                const response = await fetch(csvUrl);
+                if (!response.ok) throw new Error('無法取得數據');
+                const data = await response.text();
+                const rows = data.split(/\r?\n/).slice(1); 
+                let html = '';
+                rows.forEach(row => {
+                    const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    if (cols && cols.length >= 4) {
+                        const region = cols[0].replace(/"/g, '').trim();
+                        const time = cols[1].replace(/"/g, '').trim();
+                        const location = cols[2].replace(/"/g, '').trim();
+                        const fee = cols[3].replace(/"/g, '').trim();
+                        
+                        if (!region && !time) return;
+
+                        html += `
+                            <tr>
+                                <td class="tag-location">${region}</td>
+                                <td class="font-medium">${time}</td>
+                                <td class="text-left tracking-wide">${location}</td>
+                                <td class="text-[#d4af37] font-bold tracking-widest">${fee}</td>
+                            </tr>
+                        `;
+                    }
+                });
+                tableBody.innerHTML = html || '<tr><td colspan="4" class="p-10 text-center tracking-widest">目前尚無排定課程，請稍後再試。</td></tr>';
+            } catch (err) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="p-10 text-red-500 text-center tracking-widest font-bold">雲端連線失敗，請直接參考下方 Facebook 招生動態或撥打諮詢專線。</td></tr>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchSchedule);
+    </script>
+</body>
+</html>

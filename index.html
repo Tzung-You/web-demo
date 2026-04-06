@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+##pro
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太極拳丹道武術 - 官方網站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@300;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #050505; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: #e0e0e0; overflow-x: hidden; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        
+        /* 光影律動與玻璃擬態 */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(20,20,20,0.6) 0%, rgba(10,10,10,0.8) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .glass-panel:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.1);
+        }
+        .gradient-text { 
+            background: linear-gradient(135deg, #f9f295 0%, #d4af37 50%, #b8860b 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .nav-link { position: relative; padding: 0.5rem 0; font-weight: 500; transition: color 0.4s ease; letter-spacing: 0.05em; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1px; background: var(--gold); transition: all 0.4s ease; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        
+        /* 捲動視差與交錯彈出 */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        
+        /* 環境光 */
+        .ambient-glow { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; animation: breathe 12s ease-in-out infinite alternate; pointer-events: none; }
+        @keyframes breathe { 0% { opacity: 0.15; transform: scale(1); } 100% { opacity: 0.3; transform: scale(1.2); } }
+        .taiji-symbol { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotate 15s linear infinite; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#d4af37] selection:text-black">
+    <div class="ambient-glow bg-[#d4af37] w-[600px] h-[600px] top-[-200px] left-[-200px]"></div>
+    <div class="ambient-glow bg-[#ff9800] w-[400px] h-[400px] bottom-[-100px] right-[-100px]" style="animation-delay: -6s;"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-[#d4af37]/10 h-24 flex items-center transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="taiji-symbol group-hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-shadow duration-500"></div>
+                <span class="text-xl md:text-2xl font-black gradient-text serif tracking-[0.15em] uppercase">太極拳丹道武術</span>
+            </a>
+            <div class="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
+                <a href="index.html" class="nav-link text-[#d4af37]">首頁</a>
+                <a href="courses.html" class="nav-link text-gray-300">教學體系</a>
+                <a href="media.html" class="nav-link text-gray-300">影音專區</a>
+                <a href="admission.html" class="nav-link text-gray-300">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link pl-8 border-l border-white/10 text-[#d4af37]">老師網誌</a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-3xl focus:outline-none">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-3xl z-40 flex flex-col items-center justify-center gap-10 font-serif text-2xl tracking-[0.2em] opacity-0 pointer-events-none transition-opacity duration-500">
+        <a href="index.html" class="text-[#d4af37]">首頁</a>
+        <a href="courses.html" class="text-gray-300 hover:text-[#d4af37] transition">教學體系</a>
+        <a href="media.html" class="text-gray-300 hover:text-[#d4af37] transition">影音專區</a>
+        <a href="admission.html" class="text-gray-300 hover:text-[#d4af37] transition">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <header class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 text-center overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+        <div class="reveal max-w-5xl mx-auto relative z-10">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-12 serif leading-tight text-white tracking-tighter drop-shadow-2xl">
+                太極能量<br><span class="gradient-text uppercase block mt-4">重塑生命力</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-400 mb-16 serif italic tracking-[0.2em] font-light">
+                「太極的靈魂不在套路，而在於體內的<span class="text-[#d4af37]">勁氣能量</span>。」
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <a href="courses.html" class="group relative px-14 py-5 overflow-hidden rounded-full bg-[#d4af37] text-black font-black text-lg tracking-widest transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)]">
+                    <span class="relative z-10">深入探索修煉</span>
+                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+                </a>
+                <a href="admission.html" class="px-14 py-5 rounded-full border border-[#d4af37]/50 text-[#d4af37] font-black text-lg tracking-widest backdrop-blur-md hover:bg-[#d4af37]/10 transition-all hover:border-[#d4af37]">查看全台課表</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-40 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="reveal text-sm md:text-base font-bold mb-4 text-center text-[#d4af37] tracking-[0.5em] uppercase">The Core Issue</h2>
+            <h3 class="reveal text-4xl md:text-5xl font-black mb-24 text-center serif text-white tracking-[0.1em]">為何多年修煉仍無效果？</h3>
+            
+            <div class="grid md:grid-cols-2 gap-12 text-left">
+                <div class="reveal glass-panel p-16 rounded-[2rem]">
+                    <div class="text-[#d4af37]/20 text-7xl font-serif font-black absolute top-10 right-10 pointer-events-none">01</div>
+                    <h4 class="text-3xl font-bold text-white mb-8 serif tracking-widest">重點不在學套路</h4>
+                    <p class="text-gray-400 text-lg leading-loose font-light">
+                        傳統太極拳常被誤以為是「慢動作體操」。但若缺乏「內在勁氣」，招式只是空殼。盲目記憶招式，不如練出一股真實流動的內氣，這才是區別高手與門外漢的絕對關鍵。
+                    </p>
+                </div>
+                <div class="reveal delay-100 glass-panel p-16 rounded-[2rem]">
+                    <div class="text-[#d4af37]/20 text-7xl font-serif font-black absolute top-10 right-10 pointer-events-none">02</div>
+                    <h4 class="text-3xl font-bold text-white mb-8 serif tracking-widest">內功才是核心</h4>
+                    <p class="text-gray-400 text-lg leading-loose font-light">
+                        許多人練了一輩子，卻只觸及「形」，忽略了「質」。唯有練出內在勁氣，方能真正累積內功，達到深層的身體修復、壓力釋放與高維度的能量重組。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative border-y border-white/5 bg-[#030303]">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="reveal text-sm md:text-base font-bold mb-4 text-[#d4af37] tracking-[0.5em] uppercase">Core Practices</h2>
+            <h3 class="reveal text-4xl md:text-5xl font-black mb-24 serif text-white tracking-[0.1em]">三大核心修煉重點</h3>
+            
+            <div class="grid md:grid-cols-3 gap-10 text-left">
+                <div class="reveal glass-panel p-12 rounded-[2rem]">
+                    <div class="w-12 h-1 bg-[#d4af37] mb-8"></div>
+                    <h4 class="text-2xl font-bold text-white mb-6 serif tracking-widest">練氣：開發能量</h4>
+                    <p class="text-gray-500 leading-loose font-light">透過精準呼吸與意識引導，親身感受體內「氣」的凝聚與流動，喚醒沉睡的深層生理機能。</p>
+                </div>
+                <div class="reveal delay-100 glass-panel p-12 rounded-[2rem]">
+                    <div class="w-12 h-1 bg-[#d4af37] mb-8"></div>
+                    <h4 class="text-2xl font-bold text-white mb-6 serif tracking-widest">積功：調理臟腑</h4>
+                    <p class="text-gray-500 leading-loose font-light">利用勁氣產生的微內震動，按摩平日難以觸及的內臟，從根本改善體質，調理機能運作。</p>
+                </div>
+                <div class="reveal delay-200 glass-panel p-12 rounded-[2rem]">
+                    <div class="w-12 h-1 bg-[#d4af37] mb-8"></div>
+                    <h4 class="text-2xl font-bold text-white mb-6 serif tracking-widest">運勁：身心合一</h4>
+                    <p class="text-gray-500 leading-loose font-light">將內氣轉化為綿延不斷的高階勁力，不僅讓身體靈活充滿爆發力，更達到極致的壓力釋放。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="reveal text-4xl md:text-5xl font-black mb-24 text-center serif text-white tracking-[0.1em]">修煉四大功效</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="reveal glass-panel p-12 rounded-[2rem]">
+                    <div class="text-[#d4af37] text-4xl mb-6 serif font-black">I</div>
+                    <h5 class="text-white text-xl font-bold mb-4 tracking-widest">健康改善</h5>
+                    <p class="text-gray-500 text-sm leading-loose">舒緩痠痛、改善失眠，提升日常體能。</p>
+                </div>
+                <div class="reveal delay-100 glass-panel p-12 rounded-[2rem]">
+                    <div class="text-[#d4af37] text-4xl mb-6 serif font-black">II</div>
+                    <h5 class="text-white text-xl font-bold mb-4 tracking-widest">能量體悟</h5>
+                    <p class="text-gray-500 text-sm leading-loose">親身證實「氣」的流動，感受能量積累。</p>
+                </div>
+                <div class="reveal delay-200 glass-panel p-12 rounded-[2rem]">
+                    <div class="text-[#d4af37] text-4xl mb-6 serif font-black">III</div>
+                    <h5 class="text-white text-xl font-bold mb-4 tracking-widest">體質強化</h5>
+                    <p class="text-gray-500 text-sm leading-loose">增強免疫防禦，由內而外調理虛弱體質。</p>
+                </div>
+                <div class="reveal delay-300 glass-panel p-12 rounded-[2rem]">
+                    <div class="text-[#d4af37] text-4xl mb-6 serif font-black">IV</div>
+                    <h5 class="text-white text-xl font-bold mb-4 tracking-widest">心靈成長</h5>
+                    <p class="text-gray-500 text-sm leading-loose">動中求靜，在極致專注中找回內心寧靜。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 bg-[#020202] px-6 text-center border-t border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#d4af37]/5 pointer-events-none"></div>
+        <div class="reveal max-w-4xl mx-auto relative z-10">
+            <h3 class="text-3xl md:text-5xl font-black mb-12 serif text-white tracking-[0.2em]">大師隨筆：太極心法</h3>
+            <p class="text-gray-400 mb-16 text-lg md:text-xl leading-loose font-light">
+                吳老師親筆，將四十載習武精華、古籍密意與對當代健康修煉的深刻洞見，轉化為現代人能體悟、能實踐的禪意智慧。
+            </p>
+            <a href="https://testdem9727.blogspot.com/" target="_blank" class="inline-block px-12 py-5 rounded-full border border-[#d4af37]/30 text-[#d4af37] font-black text-sm tracking-[0.3em] uppercase hover:bg-[#d4af37] hover:text-black transition-all duration-500">
+                閱讀網誌
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-24 text-center border-t border-white/5 bg-[#050505]">
+        <div class="mb-12 flex justify-center items-center gap-8">
+            <div class="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#d4af37]/30"></div>
+            <div class="taiji-symbol opacity-40" style="width: 24px; height: 24px;"></div>
+            <div class="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#d4af37]/30"></div>
+        </div>
+        <p class="text-gray-600 text-xs tracking-[0.5em] uppercase mb-8 font-light">© 2026 Taiji Dan Dao Martial Arts</p>
+        <p class="text-gray-400 font-serif text-xl tracking-widest">官方專線：<span class="text-[#d4af37]">0918-14-88-14</span></p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.style.opacity === '1';
+            mobileMenu.style.opacity = isOpen ? '0' : '1';
+            mobileMenu.style.pointerEvents = isOpen ? 'none' : 'auto';
+            menuBtn.textContent = isOpen ? '☰' : '✕';
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

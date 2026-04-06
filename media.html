@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+##pro
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影音教學庫 - 太極拳丹道武術</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@300;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root { --gold: #d4af37; --bg: #050505; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg); color: #e0e0e0; overflow-x: hidden; }
+        .serif { font-family: 'Noto Serif TC', serif; }
+        
+        .gradient-text { background: linear-gradient(135deg, #f9f295 0%, #d4af37 50%, #b8860b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* 導覽列特效 */
+        .nav-link { position: relative; padding: 0.5rem 0; font-weight: 500; transition: color 0.4s; letter-spacing: 0.05em; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 1px; background: var(--gold); transition: all 0.4s; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+
+        /* 影片玻璃卡片 */
+        .glass-video-card { 
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px); 
+            padding: 1.5rem; 
+            border-radius: 2rem; 
+            border: 1px solid rgba(255,255,255,0.03); 
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .glass-video-card:hover { 
+            border-color: rgba(212,175,55,0.3); 
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.08);
+        }
+
+        .video-wrapper { 
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; 
+            border-radius: 1.25rem; background-color: #000; box-shadow: inset 0 0 20px rgba(0,0,0,1);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.85; transition: opacity 0.5s; filter: grayscale(20%); }
+        .glass-video-card:hover iframe { opacity: 1; filter: grayscale(0%); }
+
+        .video-title { color: #ffffff; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem; font-style: italic; border-left: 3px solid var(--gold); padding-left: 0.75rem; letter-spacing: 0.05em; }
+
+        /* 章節標題導引 */
+        .unit-header { position: relative; padding-left: 2.5rem; margin: 8rem 0 4rem 0; }
+        .unit-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--gold), transparent); border-radius: 2px; }
+        .unit-number { font-family: 'Noto Serif TC', serif; color: var(--gold); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.4em; display: block; margin-bottom: 0.5rem; font-weight: 900; }
+
+        /* 動畫與視差 */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        
+        .taiji-symbol { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(to right, var(--gold) 50%, #1a1a1a 50%); animation: rotateTaiji 15s linear infinite; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        @keyframes rotateTaiji { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* 環境光暈 */
+        .ambient-glow { position: fixed; border-radius: 50%; filter: blur(150px); opacity: 0.1; z-index: -1; pointer-events: none; }
+    </style>
+</head>
+
+<body class="antialiased">
+    <div class="ambient-glow bg-[#d4af37] w-[600px] h-[600px] top-[-10%] right-[-10%]"></div>
+    <div class="ambient-glow bg-red-900 w-[500px] h-[500px] bottom-[10%] left-[-10%]"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-[#d4af37]/10 h-24 flex items-center transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="taiji-symbol group-hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-shadow duration-500"></div>
+                <span class="text-xl md:text-2xl font-black gradient-text serif tracking-[0.15em] uppercase">太極拳丹道武術</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
+                <a href="index.html" class="nav-link text-gray-300">首頁</a>
+                <a href="courses.html" class="nav-link text-gray-300">教學體系</a>
+                <a href="media.html" class="nav-link text-[#d4af37]">影音專區</a>
+                <a href="admission.html" class="nav-link text-gray-300">最新招生</a>
+                <a href="https://testdem9727.blogspot.com/" target="_blank" class="nav-link pl-8 border-l border-white/10 text-[#d4af37]">老師網誌</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-[#d4af37] text-3xl focus:outline-none">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-3xl z-40 flex flex-col items-center justify-center gap-10 font-serif text-2xl tracking-[0.2em] opacity-0 pointer-events-none transition-opacity duration-500">
+        <a href="index.html" class="text-gray-300 hover:text-[#d4af37] transition">首頁</a>
+        <a href="courses.html" class="text-gray-300 hover:text-[#d4af37] transition">教學體系</a>
+        <a href="media.html" class="text-[#d4af37]">影音專區</a>
+        <a href="admission.html" class="text-gray-300 hover:text-[#d4af37] transition">最新招生</a>
+        <a href="https://testdem9727.blogspot.com/" target="_blank" class="text-[#d4af37]">老師網誌</a>
+    </div>
+
+    <main class="max-w-7xl mx-auto pt-40 pb-24 px-6 md:px-12 relative z-10">
+        
+        <section class="mb-32 reveal bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] p-12 md:p-16 rounded-[2.5rem] border border-red-900/30 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-red-600/10 rounded-full filter blur-[100px] pointer-events-none"></div>
+            <div class="absolute -left-20 -bottom-20 w-60 h-60 bg-[#d4af37]/5 rounded-full filter blur-[80px] pointer-events-none"></div>
+            
+            <div class="relative z-10 text-center md:text-left flex-1">
+                <h2 class="text-3xl md:text-4xl font-black mb-6 flex items-center justify-center md:justify-start gap-5 text-white tracking-widest">
+                    <span class="bg-red-600/20 text-red-500 border border-red-500/50 px-4 py-1.5 rounded-md text-xs uppercase font-black tracking-[0.2em] shadow-[0_0_15px_rgba(220,38,38,0.3)]">Live</span>
+                    YouTube 官方頻道
+                </h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl leading-loose font-light">
+                    訂閱吳老師官方頻道，掌握最新太極功法教學、內勁實作示範與丹道養生心法。
+                </p>
+            </div>
+            
+            <a href="https://www.youtube.com/@tw6889" target="_blank" class="relative z-10 bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white px-12 py-5 rounded-full font-black text-lg tracking-widest transition-all duration-500 hover:scale-105 shadow-[0_15px_30px_rgba(220,38,38,0.2)] border border-red-500/50">
+                立即訂閱頻道
+            </a>
+        </section>
+
+        <header class="text-center mb-32 reveal">
+            <h1 class="text-5xl md:text-7xl font-black gradient-text serif mb-8 tracking-[0.2em] uppercase drop-shadow-xl">影音教學庫</h1>
+            <div class="w-16 h-1 bg-[#d4af37] mx-auto mb-8"></div>
+            <p class="text-gray-500 text-xl font-light tracking-wide">收錄全台最完整的丹道太極影音，協助您開發內在勁氣。</p>
+        </header>
+
+        <section class="mb-12">
+            <div class="unit-header reveal">
+                <span class="unit-number">Unit 01</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">內功與勁氣核心</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <article class="glass-video-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/xZ0MLlobESk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【太極拳練氣內功三大層次】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        深入解析：從最初的氣感體悟，到中階能量積累，直至高階運勁。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-100">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/-28Oajw3V-k" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【什麼是「氣」的能量？】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        武學理論：以現代科學觀點解析傳統內氣，破除迷信與偽科學。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-200">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/To2TLkAHCP0" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【放鬆的秘訣：打開勁氣第一步】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        心法關鍵：唯有真實的「放鬆」，體內能量通道才能真正開啟。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="unit-header reveal">
+                <span class="unit-number">Unit 02</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">基礎實作教學</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <article class="glass-video-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7LE819k0ibc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【內氣運行導引術：實作跟練】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        實踐指南：跟著吳老師的動作與口訣，初步導引氣機運行。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-100">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/jANwGxxDyTk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【一招蓄集丹田能量】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        高效功法：針對丹田能量積存的關鍵動作解析。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-200">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/VUtqB6IXHOs" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【太極呼吸法：啟動內勁關鍵】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        呼吸心法：掌握逆腹式呼吸與勁力爆發的連動邏輯。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="unit-header reveal">
+                <span class="unit-number">Unit 03</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">進階內勁應用</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <article class="glass-video-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/XGBINQRsGMk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【如何練出內勁：懂勁的層次】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        進階解析：由「形」入「意」，將肢體力量轉換為內家整勁。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-100">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/FCqOV2AtyPg" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【纏絲勁的威力：少走20年冤枉路】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        祕法公開：陳式太極拳最具代表性的螺旋能量傳導。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-200">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/bp_wnX_fgf4" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【推手應用：以氣領勁轉化力量】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        實戰應用：能量借力與化勁的高層次動態表現。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mb-32">
+            <div class="unit-header reveal">
+                <span class="unit-number">Unit 04</span>
+                <h2 class="text-3xl md:text-4xl font-black serif text-white tracking-widest">古法傳承與養生</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <article class="glass-video-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/82HRE6uJ4_g" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【練五行氣‧養五臟】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        丹道調理：透過五行功法，對內臟機能進行精準的能量修復。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-100">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/B3jMKvd6Tgg" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="video-title">【運動內臟：提升健身功效】</h4>
+                    <p class="text-gray-400 text-sm leading-loose font-light px-2 flex-grow">
+                        深度保健：超越普通肌肉訓練，從根本強化臟腑活力。
+                    </p>
+                </article>
+
+                <article class="glass-video-card reveal delay-200 bg-gradient-to-b from-transparent to-[#111] border-dashed border-2 border-[#d4af37]/30 flex flex-col items-center justify-center text-center p-10 hover:border-[#d4af37] transition-all duration-500">
+                    <div class="mb-8">
+                        <div class="text-[#d4af37] text-5xl mb-4 serif italic font-black uppercase drop-shadow-lg">Plus+</div>
+                        <div class="w-12 h-1 bg-[#d4af37] mx-auto"></div>
+                    </div>
+                    <p class="text-gray-400 text-base leading-loose mb-10 font-light">
+                        更多高階功法、實戰應對影片<br>均收錄於官方訂閱專區。
+                    </p>
+                    <a href="https://www.youtube.com/@tw6889" target="_blank" class="text-white border border-[#d4af37] px-8 py-3 rounded-full hover:bg-[#d4af37] hover:text-black transition-all duration-300 font-bold tracking-[0.2em] text-sm uppercase">
+                        觀看更多影片
+                    </a>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-24 text-center border-t border-white/5 bg-[#050505] relative z-10">
+        <div class="mb-12 flex justify-center items-center gap-8">
+            <div class="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#d4af37]/30"></div>
+            <div class="taiji-symbol opacity-40" style="width: 24px; height: 24px;"></div>
+            <div class="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#d4af37]/30"></div>
+        </div>
+        <p class="text-gray-600 text-xs tracking-[0.6em] uppercase mb-8 font-black">
+            © 2026 TAIJI DAN DAO MARTIAL ARTS | ALL RIGHTS RESERVED
+        </p>
+        <p class="text-gray-300 font-serif text-2xl md:text-3xl tracking-widest">
+            諮詢專線：<span class="text-[#d4af37]">0918-14-88-14</span>
+        </p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.style.opacity === '1';
+            mobileMenu.style.opacity = isOpen ? '0' : '1';
+            mobileMenu.style.pointerEvents = isOpen ? 'none' : 'auto';
+            menuBtn.textContent = isOpen ? '☰' : '✕';
+        });
+
+        // 點擊連結後自動關閉選單
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.pointerEvents = 'none';
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
